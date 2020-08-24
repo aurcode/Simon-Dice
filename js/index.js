@@ -41,6 +41,11 @@ class Juego {
     console.log(this.secuencia)
   }
 
+  cambiarSecuencia() {
+    this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor(Math.random() * 4))
+    console.log(this.secuencia)
+  }
+
   siguienteNivel() {
     this.subnivel = 0
     this.iluminarSecuencia()
@@ -125,6 +130,7 @@ class Juego {
   }
   
   pasarAlSiguienteNivel(){
+    this.cambiarSecuencia()
     setTimeout(this.siguienteNivel, 1000)
   }
   ganoElJuego() {
