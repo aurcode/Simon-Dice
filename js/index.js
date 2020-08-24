@@ -15,6 +15,7 @@ class Juego {
   }
 
   inicializar() {
+    this.pasarAlSiguienteNivel = this.pasarAlSiguienteNivel.bind(this)
     this.siguienteNivel = this.siguienteNivel.bind(this)
     this.elegirColor = this.elegirColor.bind(this)
     this.toggleBtnEmpezar()
@@ -37,6 +38,7 @@ class Juego {
 
   generarSecuencia() {
     this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor(Math.random() * 4))
+    console.log(this.secuencia)
   }
 
   siguienteNivel() {
@@ -113,7 +115,8 @@ class Juego {
         if (this.nivel === (ULTIMO_NIVEL + 1)) {
           this.ganoElJuego()
         } else {
-          setTimeout(this.siguienteNivel, 1500)
+          swal('Simón Dice', `Haz pasado al nivel ${this.nivel}`, 'success')
+            .then(this.pasarAlSiguienteNivel)
         }
       }
     } else {
@@ -121,6 +124,9 @@ class Juego {
     }
   }
   
+  pasarAlSiguienteNivel(){
+    setTimeout(this.siguienteNivel, 1000)
+  }
   ganoElJuego() {
     swal('Simón Dice','Felicitaciones, ganaste el juego!', 'success')
       .then(this.inicializar)}
