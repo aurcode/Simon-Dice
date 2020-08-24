@@ -41,11 +41,6 @@ class Juego {
     console.log(this.secuencia)
   }
 
-  cambiarSecuencia() {
-    this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map(n => Math.floor(Math.random() * 4))
-    console.log(this.secuencia)
-  }
-
   siguienteNivel() {
     this.subnivel = 0
     this.iluminarSecuencia()
@@ -81,13 +76,13 @@ class Juego {
   iluminarSecuencia() {
     for (let i = 0; i < this.nivel; i++) {
       const color = this.transformarNumeroAColor(this.secuencia[i])
-      setTimeout(() => this.iluminarColor(color), 1000 * i)
+      setTimeout(() => this.iluminarColor(color), 700 * i)
     }
   }
 
   iluminarColor(color) {
     this.colores[color].classList.add('light')
-    setTimeout(() => this.apagarColor(color), 350)
+    setTimeout(() => this.apagarColor(color), 320)
   }
 
   apagarColor(color) {
@@ -130,7 +125,7 @@ class Juego {
   }
   
   pasarAlSiguienteNivel(){
-    this.cambiarSecuencia()
+    this.generarSecuencia()
     setTimeout(this.siguienteNivel, 1000)
   }
   ganoElJuego() {
